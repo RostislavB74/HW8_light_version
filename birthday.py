@@ -7,12 +7,12 @@ users = [
     {'name': 'Sergey Korchuk', 'birthday': datetime(1976, 7, 25)},
     {'name': 'Alexandr Korchuk', 'birthday': datetime(1984, 10, 20)},
     {'name': 'Viktor Bakharev', 'birthday': datetime(1962, 6, 23)},
-    {'name': 'Svetlana Vratskaya', 'birthday': datetime(1974, 6, 24)},
-    {'name': 'Fedor Bulko', 'birthday': datetime(1980, 6, 26)},
-    {'name': 'Srgey Gudilin', 'birthday': datetime(1972, 2, 29)},
+    {'name': 'Svetlana Vratskaya', 'birthday': datetime(1974, 7, 4)},
+    {'name': 'Fedor Bulko', 'birthday': datetime(1980, 7, 3)},
+    {'name': 'Srgey Gudilin', 'birthday': datetime(1972, 7, 3)},
     {'name': 'Vladimir Metelev', 'birthday': datetime(1982, 12, 31)},
-    {'name': 'Dmitry Kryvsha', 'birthday': datetime(1988, 7, 3)},
-    {'name': 'Leonid Chayka', 'birthday': '26-6-1949'},
+    {'name': 'Dmitry Kryvsha', 'birthday': datetime(1988, 7, 1)},
+    {'name': 'Leonid Chayka', 'birthday': '6-7-1949'},
 ]
 
 
@@ -22,8 +22,8 @@ def current_data():
     # current_date = datetime(2023, 2, 23) # test 29 february not leap
     # current_date = datetime(2024, 2, 23) # test 29 february leap
     # print(current_date)  #
-    current_data =datetime.now()
-    
+    current_data = datetime.now()
+
     return (current_data)
 
 
@@ -46,9 +46,9 @@ def get_birthdays_per_week(list_of_emp: list) -> None:
         bd = bd.replace(year=current_year)
         start, end = get_period()
        # print(start, end)
-       #print(bd)
+       # print(bd)
         if start <= bd <= end:
-            
+
             if bd.weekday() in (5, 6):
                 bd = current_date + timedelta(days=7-(current_date.weekday()))
                 result[bd].append(users['name'])
@@ -60,7 +60,7 @@ def get_birthdays_per_week(list_of_emp: list) -> None:
 
 def get_period():
     current_date = current_data()
-    
+
     start_period = current_date + timedelta(days=5-(current_date.weekday()))
 
     return start_period.date(), (start_period + timedelta(6)).date()
@@ -68,4 +68,10 @@ def get_period():
 
 if __name__ == "__main__":
     for key, value in get_birthdays_per_week(users).items():
+        # print(key)
+        # print(value)
+        result = sorted(get_birthdays_per_week(users).items())
+        # print(type(result))
+    # print(f'{result.key}:{result.value})')
         print(key.strftime("%A"), value)
+        # print(sorted(get_birthdays_per_week(users).items()))
