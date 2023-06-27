@@ -71,7 +71,10 @@ if __name__ == "__main__":
         # print(key)
         # print(value)
         result = sorted(get_birthdays_per_week(users).items())
-        # print(type(result))
-    # print(f'{result.key}:{result.value})')
-        print(key.strftime("%A"), value)
+        # print(result)
+    for i in result:
+        list1 = ', '.join(i[1])
+        print(f'{i[0].strftime("%A")}: {list1}')
+        # print(f'{result.key}:{result.value})')
+        # print(f'{key.strftime("%A")}:', value)
         # print(sorted(get_birthdays_per_week(users).items()))
